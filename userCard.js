@@ -71,11 +71,30 @@ class UserCard extends HTMLElement {
             .addEventListener('click', () => this.toggleInfo());
     }
 
-    disconnectedCallback() {
-        this.shadowRoot.querySelector('#toggle-info')
-            .removeEventListener();
-    }
+    // disconnectedCallback() {
+    //     this.shadowRoot.querySelector('#toggle-info')
+    //         .removeEventListener();
+    // }
 
 }
 
 window.customElements.define('user-card', UserCard);
+
+
+function populate() {
+    let gender = 'men';
+    for (let i = 1; i < 20; i++) {
+        gender = 'women';
+        if (i % 2) {
+            gender = 'men';
+        }
+        document.querySelector('body').innerHTML += `
+        <user-card name="John Doe" avatar="https://randomuser.me/api/portraits/${gender}/${i}.jpg">
+            <div slot="email">johndoe@gmail.com</div>
+            <div slot="phone">(9) 9 9999-9999</div>
+        </user-card>
+        `;
+    }
+}
+
+this.populate();
